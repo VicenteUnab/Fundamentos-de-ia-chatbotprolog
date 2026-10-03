@@ -50,6 +50,38 @@ responder(T, Respuesta) :-
 % CONSULTAS SOBRE UNA PLANTA
 % ============================================================
 
+% Responde si una planta esta registrada como segura para mascotas.
+responder(T, Respuesta) :-
+    encontrar_planta(T, Planta),
+    tiene_palabra(T, ["mascota", "mascotas", "perro", "gato"]),
+    (   apta_mascotas(Planta)
+    ->  format(
+            string(Respuesta),
+            "Si, la ~w esta registrada como segura para mascotas.",
+            [Planta]
+        )
+    ;   format(
+            string(Respuesta),
+            "La ~w no esta registrada como segura para mascotas en esta base.",
+            [Planta]
+        )
+    ).
+
+% Responde si una planta necesita luz media o alta.
+responder(T, Respuesta) :-
+    encontrar_planta(T, Planta),
+    tiene_palabra(T, ["luz", "iluminacion", "iluminación"]),
+    member(Nivel, [media, alta]),
+    atom_string(Nivel, Palabra),
+    member(Palabra, T),
+    luz(Planta, Registrado),
+    (Registrado == Nivel -> Veredicto = "si" ; Veredicto = "no"),
+    format(
+        string(Respuesta),
+        "~w: la respuesta es ~w, porque su nivel de luz registrado es ~w.",
+        [Planta, Veredicto, Registrado]
+    ).
+
 % Responde si una planta necesita poca luz.
 responder(T, Respuesta) :-
     encontrar_planta(T, Planta),
