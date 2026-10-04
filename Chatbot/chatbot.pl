@@ -1,3 +1,5 @@
+% Codificacion explicita para que las tildes carguen bien en cualquier sistema.
+:- encoding(utf8).
 
 % CHATBOT EN PROLOG
 
@@ -24,9 +26,46 @@ encontrar_planta(Tokens, Planta) :-
     !.
 
 % Convierte una lista de atomos en una frase separada por comas.
-lista_a_texto([], "ninguna").
+lista_a_texto([], "ninguna") :- !.
 lista_a_texto(Lista, Texto) :-
     atomic_list_concat(Lista, ', ', Texto).
+
+% Articulo definido de una planta (por defecto femenino).
+articulo(Planta, "el") :-
+    member(Planta, [potus, helecho, ficus]),
+    !.
+articulo(_, "la").
+
+% Escribe "la zamioculca" / "el potus" segun corresponda.
+con_articulo(Planta, Texto) :-
+    articulo(Planta, Art),
+    format(string(Texto), "~w ~w", [Art, Planta]).
+
+% Concordancia de genero: "registrado como seguro" / "registrada como segura".
+registrada_segura(Planta, "registrado como seguro") :-
+    articulo(Planta, "el"),
+    !.
+registrada_segura(_, "registrada como segura").
+
+% Igual que con_articulo/2 pero con mayuscula inicial ("La cinta", "El potus").
+con_articulo_mayus(Planta, Texto) :-
+    con_articulo(Planta, Minuscula),
+    sub_string(Minuscula, 0, 1, _, Inicial),
+    sub_string(Minuscula, 1, _, 0, Resto),
+    string_upper(Inicial, Mayuscula),
+    string_concat(Mayuscula, Resto, Texto).
+
+% ============================================================
+% INTERFAZ PUBLICA DEL CHATBOT
+% ============================================================
+
+% responder_texto(+Entrada, -Respuesta)
+% Recibe la pregunta como texto y devuelve la respuesta como string.
+% No lee ni escribe en consola, por lo que puede ser llamado desde
+% main.pl, desde scripts de prueba o desde otro programa (Python, web).
+responder_texto(Entrada, Respuesta) :-
+    tokenizar(Entrada, Tokens),
+    once(responder(Tokens, Respuesta)).
 
 % ============================================================
 % RESPUESTAS GENERALES
@@ -44,7 +83,8 @@ responder(T, "Puedes preguntar, por ejemplo: ¿que plantas necesitan poca luz?, 
 responder(T, Respuesta) :-
     tiene_palabra(T, ["existe", "conoces", "tienes"]),
     encontrar_planta(T, Planta),
-    format(string(Respuesta), "Si, conozco la ~w y tengo informacion sobre sus cuidados.", [Planta]).
+    con_articulo(Planta, Nombre),
+    format(string(Respuesta), "Si, conozco ~w y tengo informacion sobre sus cuidados.", [Nombre]).
 
 % ============================================================
 % CONSULTAS SOBRE UNA PLANTA
@@ -54,16 +94,19 @@ responder(T, Respuesta) :-
 responder(T, Respuesta) :-
     encontrar_planta(T, Planta),
     tiene_palabra(T, ["mascota", "mascotas", "perro", "gato"]),
+    con_articulo(Planta, Nombre),
+    con_articulo_mayus(Planta, NombreMayus),
+    registrada_segura(Planta, Registrada),
     (   apta_mascotas(Planta)
     ->  format(
             string(Respuesta),
-            "Si, la ~w esta registrada como segura para mascotas.",
-            [Planta]
+            "Si, ~w esta ~w para mascotas.",
+            [Nombre, Registrada]
         )
     ;   format(
             string(Respuesta),
-            "La ~w no esta registrada como segura para mascotas en esta base.",
-            [Planta]
+            "~w no esta ~w para mascotas en esta base.",
+            [NombreMayus, Registrada]
         )
     ).
 
@@ -122,7 +165,8 @@ responder(T, Respuesta) :-
     luz(Planta, Luz),
     riego(Planta, Riego),
     humedad(Planta, Humedad),
-    format(string(Respuesta), "La ~w necesita luz ~w, riego ~w y humedad ~w.", [Planta, Luz, Riego, Humedad]).
+    con_articulo_mayus(Planta, Nombre),
+    format(string(Respuesta), "~w necesita luz ~w, riego ~w y humedad ~w.", [Nombre, Luz, Riego, Humedad]).
 
 % ============================================================
 % CONSULTAS POR CARACTERISTICA
@@ -183,7 +227,7 @@ responder(T, Respuesta) :-
 % Devuelve plantas aptas si el usuario suele olvidar el riego.
 responder(T, Respuesta) :-
     tiene_palabra(T, ["olvido", "olvidar", "olvidarme", "descuido"]),
-    tiene_palabra(T, ["regar", "riego", "agua"]),
+    tiene_palabra(T, ["regar", "regarla", "regarlo", "regarlas", "regarlos", "riego", "agua"]),
     findall(P, necesita_poco_riego(P), Plantas),
     lista_a_texto(Plantas, Texto),
     format(string(Respuesta), "Si sueles olvidar el riego, las plantas de poco riego registradas son: ~w.", [Texto]).

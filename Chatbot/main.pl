@@ -1,6 +1,10 @@
+:- encoding(utf8).
+
 % ============================================================
-% PUNTO DE ENTRADA DEL CHATBOT
+% PUNTO DE ENTRADA DEL CHATBOT (CONSOLA)
 % ============================================================
+% Este archivo solo maneja la conversacion por consola.
+% La logica de respuesta vive en chatbot.pl (responder_texto/2).
 
 :- consult('chatbot.pl').
 :- use_module(library(readutil)).
@@ -21,14 +25,26 @@ iniciar :-
 % Mantiene la conversacion hasta que el usuario salga.
 bucle :-
     write('Tu: '),
+    flush_output,
     read_line_to_string(user_input, Entrada),
-    (   terminar(Entrada)
-    ->  writeln('Bot: Hasta luego.'), nl
-    ;   tokenizar(Entrada, Tokens),
-        responder(Tokens, Respuesta),
-        format('Bot: ~s~n~n', [Respuesta]),
-        bucle
-    ).
+    procesar(Entrada).
+
+% Fin de la entrada (Ctrl+D o stdin cerrado): termina sin error.
+procesar(end_of_file) :-
+    !,
+    nl,
+    writeln('Bot: Hasta luego.').
+% El usuario pide salir.
+procesar(Entrada) :-
+    terminar(Entrada),
+    !,
+    writeln('Bot: Hasta luego.'),
+    nl.
+% Pregunta normal: responde y sigue conversando.
+procesar(Entrada) :-
+    responder_texto(Entrada, Respuesta),
+    format('Bot: ~s~n~n', [Respuesta]),
+    bucle.
 
 % Reconoce las formas basicas de salida.
 terminar(Entrada) :-
