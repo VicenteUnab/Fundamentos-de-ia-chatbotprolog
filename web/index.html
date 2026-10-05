@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#183d32">
+  <title>Botánica | Chatbot de plantas</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Botánica, inicio">
+        <span class="brand-icon" aria-hidden="true">🌿</span>
+        <span>Botánica<span class="brand-dot">.</span></span>
+      </a>
+
+      <p class="eyebrow">TU ASISTENTE DE PLANTAS</p>
+      <h1>Un poco de ayuda.<br>Mucho más verde.</h1>
+      <p class="intro">
+        Consulta sobre luz, riego y cuidados de las plantas de interior
+        registradas en nuestra base de conocimiento.
+      </p>
+
+      <section class="suggestions" aria-labelledby="suggestions-title">
+        <h2 id="suggestions-title">¿Por dónde empezamos?</h2>
+
+        <button type="button" class="suggestion"
+                data-question="¿Qué plantas necesitan poca luz?">
+          <span aria-hidden="true">☀️</span>
+          Plantas para poca luz
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <button type="button" class="suggestion"
+                data-question="¿Qué plantas necesitan poco riego?">
+          <span aria-hidden="true">💧</span>
+          Plantas de poco riego
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <button type="button" class="suggestion"
+                data-question="¿Qué plantas son seguras para mascotas?">
+          <span aria-hidden="true">🐾</span>
+          Plantas y mascotas
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <button type="button" class="suggestion"
+                data-question="¿Qué plantas son adecuadas para principiantes?">
+          <span aria-hidden="true">🌱</span>
+          Para principiantes
+          <span aria-hidden="true">↗</span>
+        </button>
+      </section>
+
+      <p class="sidebar-note">
+        Proyecto de Fundamentos de Inteligencia Artificial.
+      </p>
+    </aside>
+
+    <section class="chat-panel" aria-labelledby="chat-title">
+      <header class="chat-header">
+        <div>
+          <h2 id="chat-title">Conversemos de plantas</h2>
+          <p>Elige una versión y escribe tu pregunta.</p>
+        </div>
+
+        <button id="clear-chat" class="clear-button" type="button">
+          Limpiar chat
+        </button>
+      </header>
+
+      <div class="model-bar">
+        <label for="model">Responder con</label>
+        <select id="model" name="model">
+          <option value="prolog">Prolog · Hechos y reglas</option>
+          <option value="gemini">Gemini · Modelo de lenguaje</option>
+        </select>
+      </div>
+
+      <div id="messages" class="messages"
+           role="log" aria-live="polite"
+           aria-label="Historial de mensajes">
+        <article class="message bot">
+          <span class="avatar" aria-hidden="true">🌿</span>
+          <div class="message-content">
+            <span class="message-author">Botánica</span>
+            <p>
+              ¡Hola! Puedo ayudarte con las plantas de nuestra base.
+              Pregúntame por sus cuidados o elige una sugerencia.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="composer">
+        <p id="status" class="status" role="status"></p>
+
+        <form id="chat-form" class="chat-form">
+          <label for="question" class="sr-only">
+            Tu pregunta sobre plantas
+          </label>
+          <input
+            id="question"
+            name="question"
+            type="text"
+            placeholder="Ej.: ¿Qué necesita la calathea?"
+            maxlength="1000"
+            autocomplete="off"
+            required
+          >
+          <button id="send-button" type="submit">Enviar ↗</button>
+        </form>
+
+        <p class="composer-note">
+          Cada pregunta es independiente. Las respuestas se basan
+          en el conocimiento registrado.
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
