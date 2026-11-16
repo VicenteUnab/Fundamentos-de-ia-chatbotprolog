@@ -40,7 +40,7 @@ def buscar_prolog():
         return str(ruta_windows)
 
     raise ErrorChat(
-        "No se encontró SWI-Prolog. Instálalo y reinicia VSCode."
+        "No se encontró SWI-Prolog. Instálalo y reinicia la terminal."
     )
 
 

@@ -1,3 +1,5 @@
+:- encoding(utf8).
+
 :- consult('chatbot.pl').
 :- use_module(library(http/json)).
 :- initialization(main, main).

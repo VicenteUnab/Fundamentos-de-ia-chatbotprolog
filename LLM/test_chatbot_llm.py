@@ -15,7 +15,7 @@ from google.genai import errors
 
 import chatbot_llm
 from chatbot_llm import ChatbotLLM, ErrorLLM
-from probar_preguntas import leer_preguntas
+from probar_preguntas import filtrar_preguntas, leer_preguntas, parsear_numeros
 
 
 class RespuestaFalsa:
@@ -148,6 +148,20 @@ class PruebasPreguntas(unittest.TestCase):
         self.assertEqual(len(preguntas), 20)
         self.assertEqual(preguntas[0], (1, "¿Qué plantas necesitan poca luz?"))
         self.assertEqual(preguntas[-1][0], 20)
+
+    def test_parsear_numeros_acepta_numeros_y_rangos(self):
+        self.assertEqual(parsear_numeros("3"), {3})
+        self.assertEqual(parsear_numeros("3,12-20"), {3, *range(12, 21)})
+        self.assertEqual(parsear_numeros(" 1 , 2-3 ,3"), {1, 2, 3})
+
+    def test_parsear_numeros_rechaza_texto_invalido(self):
+        for texto in ("", "abc", "5-2", "0", "1-", "-3", "1-2-3"):
+            with self.assertRaises(ValueError, msg=texto):
+                parsear_numeros(texto)
+
+    def test_filtrar_preguntas_respeta_el_orden_del_archivo(self):
+        filtradas = filtrar_preguntas(leer_preguntas(), parsear_numeros("12-13,3"))
+        self.assertEqual([numero for numero, _ in filtradas], [3, 12, 13])
 
 
 if __name__ == "__main__":

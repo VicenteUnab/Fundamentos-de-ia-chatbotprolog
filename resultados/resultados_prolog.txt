@@ -1,0 +1,60 @@
+1. ¿Qué plantas necesitan poca luz?
+   -> Las plantas que toleran poca luz son: sansevieria, zamioculca.
+
+2. ¿Qué plantas necesitan poco riego?
+   -> Las plantas que necesitan poco riego son: sansevieria, zamioculca, suculenta.
+
+3. ¿Qué plantas son fáciles de cuidar?
+   -> Las plantas faciles de cuidar son: sansevieria, zamioculca, suculenta.
+
+4. ¿Qué plantas son adecuadas para principiantes?
+   -> Para principiantes sugiero revisar: sansevieria, zamioculca, potus, cinta, suculenta.
+
+5. ¿Qué plantas prefieren alta humedad?
+   -> Las plantas que prefieren alta humedad son: helecho, calathea.
+
+6. ¿Qué plantas son seguras para mascotas?
+   -> En esta base, las plantas registradas como seguras para mascotas son: cinta, helecho, calathea.
+
+7. ¿Qué plantas sirven para un baño?
+   -> Para un bano con luz media, las plantas que cumplen las reglas son: helecho, calathea.
+
+8. ¿La zamioculca necesita poca luz?
+   -> zamioculca: la respuesta es si, porque su nivel de luz registrado es baja.
+
+9. ¿La suculenta necesita poco riego?
+   -> suculenta: la respuesta es si, porque su nivel de riego registrado es bajo.
+
+10. ¿El helecho necesita poco riego?
+   -> helecho: la respuesta es no, porque su nivel de riego registrado es alto.
+
+11. ¿La sansevieria es fácil de cuidar?
+   -> Segun las reglas del chatbot, sansevieria es facil de cuidar: si.
+
+12. ¿La calathea es apta para principiantes?
+   -> Segun las reglas del chatbot, calathea es apta para principiantes: no.
+
+13. ¿Qué necesita la calathea?
+   -> La calathea necesita luz media, riego alto y humedad alta.
+
+14. ¿Qué necesita el potus?
+   -> El potus necesita luz media, riego medio y humedad media.
+
+15. ¿La cinta es segura para mascotas?
+   -> Si, la cinta esta registrada como segura para mascotas.
+
+16. ¿El potus es apto para poca luz?
+   -> potus: la respuesta es no, porque su nivel de luz registrado es media.
+
+17. ¿La suculenta necesita luz alta?
+   -> suculenta: la respuesta es si, porque su nivel de luz registrado es alta.
+
+18. ¿Qué planta puedo usar si olvido regarla seguido?
+   -> Si sueles olvidar el riego, las plantas de poco riego registradas son: sansevieria, zamioculca, suculenta.
+
+19. ¿Conoces la zamioculca?
+   -> Si, conozco la zamioculca y tengo informacion sobre sus cuidados.
+
+20. ¿Qué cuidados tiene el ficus?
+   -> El ficus necesita luz alta, riego medio y humedad media.
+

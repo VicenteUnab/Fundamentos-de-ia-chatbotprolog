@@ -1,0 +1,65 @@
+
+### GET /
+HTTP 200 (text/html; charset=utf-8)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#183d32">
+  <title>Botánica | Chatbot de plantas</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <aside class="sidebar">
+      <a class="bra
+
+### GET /app.js
+HTTP 200 (application/javascript; charset=utf-8)
+"use strict";
+
+const form = document.querySelector("#chat-form");
+const questionInput = document.querySelector("#question");
+const modelSelect = document.querySelector("#model");
+const messages = document.querySelector("#messages");
+const sendButton = document.querySelector("#send-button");
+const clearButton = document.querySelector("#clear-chat");
+const statusText = document.querySelector("#statu
+
+### GET /noexiste
+HTTP 404 (application/json; charset=utf-8)
+{"error": "Página no encontrada."}
+
+### GET /../servidor.py
+HTTP 404 (application/json; charset=utf-8)
+{"error": "Página no encontrada."}
+
+### POST prolog
+HTTP 200 (application/json; charset=utf-8)
+{"respuesta": "Para un bano con luz media, las plantas que cumplen las reglas son: helecho, calathea.", "modelo": "prolog"}
+
+### POST gemini
+HTTP 503 (application/json; charset=utf-8)
+{"error": "Falta la API key. Crea una gratis en https://aistudio.google.com/apikey y guardala en la variable de entorno GEMINI_API_KEY (o en un archivo .env; ver .env.example)."}
+
+### POST modelo inválido
+HTTP 400 (application/json; charset=utf-8)
+{"error": "Selecciona un modelo válido."}
+
+### POST pregunta vacía
+HTTP 400 (application/json; charset=utf-8)
+{"error": "Escribe una pregunta."}
+
+### POST JSON inválido
+HTTP 400 (application/json; charset=utf-8)
+{"error": "El JSON no es válido."}
+
+### POST sin Content-Type JSON
+HTTP 415 (application/json; charset=utf-8)
+{"error": "La solicitud debe enviarse como JSON."}
+
+### POST comillas y barra invertida (prolog)
+HTTP 200 (application/json; charset=utf-8)
+{"respuesta": "No encontre una regla para esa pregunta. Prueba con consultas sobre luz, riego, humedad, mascotas o cuidados de una planta.", "modelo": "prolog"}

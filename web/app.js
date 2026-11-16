@@ -80,10 +80,12 @@ async function sendQuestion() {
   addMessage(question, "user", "Tú");
   questionInput.value = "";
   setSending(true);
-  statusText.textContent = `${modelName} está preparando la respuesta…`;
+  statusText.textContent = model === "gemini"
+    ? "Gemini está preparando la respuesta (puede tardar hasta 2 minutos)…"
+    : `${modelName} está preparando la respuesta…`;
 
   const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 90000);
+  const timeout = window.setTimeout(() => controller.abort(), 240000);
 
   try {
     const response = await fetch("/api/chat", {
