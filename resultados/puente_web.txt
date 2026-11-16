@@ -1,0 +1,3 @@
+ {
+  "respuesta":"La calathea necesita luz media, riego alto y humedad alta."
+}

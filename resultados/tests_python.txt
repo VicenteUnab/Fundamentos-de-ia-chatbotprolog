@@ -1,0 +1,22 @@
+test_es_salida (test_chatbot_llm.PruebasEntorno.test_es_salida) ... ok
+test_modelo_se_puede_elegir_por_variable_de_entorno (test_chatbot_llm.PruebasEntorno.test_modelo_se_puede_elegir_por_variable_de_entorno) ... ok
+test_sin_api_key_lanza_error_explicativo (test_chatbot_llm.PruebasEntorno.test_sin_api_key_lanza_error_explicativo) ... ok
+test_filtrar_preguntas_respeta_el_orden_del_archivo (test_chatbot_llm.PruebasPreguntas.test_filtrar_preguntas_respeta_el_orden_del_archivo) ... ok
+test_parsear_numeros_acepta_numeros_y_rangos (test_chatbot_llm.PruebasPreguntas.test_parsear_numeros_acepta_numeros_y_rangos) ... ok
+test_parsear_numeros_rechaza_texto_invalido (test_chatbot_llm.PruebasPreguntas.test_parsear_numeros_rechaza_texto_invalido) ... ok
+test_se_leen_las_20_preguntas (test_chatbot_llm.PruebasPreguntas.test_se_leen_las_20_preguntas) ... ok
+test_cambios_en_el_conocimiento_llegan_al_prompt (test_chatbot_llm.PruebasPrompt.test_cambios_en_el_conocimiento_llegan_al_prompt) ... ok
+test_falta_el_archivo_de_conocimiento (test_chatbot_llm.PruebasPrompt.test_falta_el_archivo_de_conocimiento) ... ok
+test_prompt_incluye_la_base_de_conocimiento (test_chatbot_llm.PruebasPrompt.test_prompt_incluye_la_base_de_conocimiento) ... ok
+test_cuota_agotada_da_mensaje_claro_despues_de_los_reintentos (test_chatbot_llm.PruebasResponder.test_cuota_agotada_da_mensaje_claro_despues_de_los_reintentos) ... ok
+test_devuelve_el_texto_y_envia_los_parametros_correctos (test_chatbot_llm.PruebasResponder.test_devuelve_el_texto_y_envia_los_parametros_correctos) ... ok
+test_error_de_clave_no_se_reintenta (test_chatbot_llm.PruebasResponder.test_error_de_clave_no_se_reintenta) ... ok
+test_pregunta_vacia_no_llama_a_la_api (test_chatbot_llm.PruebasResponder.test_pregunta_vacia_no_llama_a_la_api) ... ok
+test_reintenta_ante_errores_temporales (test_chatbot_llm.PruebasResponder.test_reintenta_ante_errores_temporales) ... ok
+test_respuesta_vacia_lanza_error (test_chatbot_llm.PruebasResponder.test_respuesta_vacia_lanza_error) ... ok
+test_sin_internet_da_mensaje_claro (test_chatbot_llm.PruebasResponder.test_sin_internet_da_mensaje_claro) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.029s
+
+OK

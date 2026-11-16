@@ -1,0 +1,10 @@
+
+==============================================
+ CHATBOT DE PLANTAS DE INTERIOR - PROLOG
+ Escribe "ayuda" para ver ejemplos.
+ Escribe "salir" para terminar.
+==============================================
+Tu: Bot: El potus necesita luz media, riego medio y humedad media.
+
+Tu: Bot: Hasta luego.
+

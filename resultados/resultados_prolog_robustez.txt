@@ -1,0 +1,27 @@
+1. ¿La cinta es segura para gatos y necesita poco riego?
+   -> cinta: la respuesta es no, porque su nivel de riego registrado es medio.
+
+2. ¿Qué plantas me sugieres para principiantes con mascotas?
+   -> Para principiantes sugiero revisar: sansevieria, zamioculca, potus, cinta, suculenta.
+
+3. ¿Qué planta me recomiendas para un baño con mascotas?
+   -> En esta base, las plantas registradas como seguras para mascotas son: cinta, helecho, calathea.
+
+4. ¿La zamioculca y el ficus necesitan poca luz?
+   -> zamioculca: la respuesta es si, porque su nivel de luz registrado es baja.
+
+5. hola, ¿qué necesita la calathea?
+   -> Hola. Soy el chatbot de plantas de interior. Preguntame por luz, riego, humedad o cuidados.
+
+6. ¿Qué plantas necesitan al menos luz media?
+   -> No encontre una regla para esa pregunta. Prueba con consultas sobre luz, riego, humedad, mascotas o cuidados de una planta.
+
+7. ¿Cuáles son las plantas que resisten la falta de sol?
+   -> No encontre una regla para esa pregunta. Prueba con consultas sobre luz, riego, humedad, mascotas o cuidados de una planta.
+
+8. ¿Qué necesita el aloe?
+   -> No encontre una regla para esa pregunta. Prueba con consultas sobre luz, riego, humedad, mascotas o cuidados de una planta.
+
+9. ¿El potus es tóxico para mis gatos?
+   -> No encontre una regla para esa pregunta. Prueba con consultas sobre luz, riego, humedad, mascotas o cuidados de una planta.
+

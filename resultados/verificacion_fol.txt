@@ -1,0 +1,23 @@
+apta_poca_luz: [sansevieria,zamioculca]
+   cuerpo(s): [(planta(_9346),luz(_9346,baja))]
+necesita_poco_riego: [sansevieria,zamioculca,suculenta]
+   cuerpo(s): [(planta(_9352),riego(_9352,bajo))]
+facil_cuidado: [sansevieria,zamioculca,suculenta]
+   cuerpo(s): [(planta(_9352),resistente(_9352),riego(_9352,bajo))]
+apta_principiante: [sansevieria,zamioculca,potus,cinta,suculenta]
+   cuerpo(s): [(planta(_9364),resistente(_9364))]
+apta_ambiente_humedo: [helecho,calathea]
+   cuerpo(s): [(planta(_9346),humedad(_9346,alta))]
+apta_mascotas: [cinta,helecho,calathea]
+   cuerpo(s): [(planta(_9352),segura_mascotas(_9352))]
+apta_bano: [helecho,calathea]
+   cuerpo(s): [(planta(_9346),humedad(_9346,alta),luz(_9346,media))]
+sansevieria | [baja] | [bajo] | [baja] | si | -
+zamioculca | [baja] | [bajo] | [baja] | si | -
+potus | [media] | [medio] | [media] | si | -
+cinta | [media] | [medio] | [media] | si | si
+helecho | [media] | [alto] | [alta] | - | si
+calathea | [media] | [alto] | [alta] | - | si
+suculenta | [alta] | [bajo] | [baja] | si | -
+ficus | [alta] | [medio] | [media] | - | -
+huerfanos: []
