@@ -1,8 +1,10 @@
 ## Descripción
 
-Chatbot sobre el cuidado de plantas de interior, desarrollado en Prolog.
-Responde consultas sobre luz, riego, humedad, facilidad de cuidado y
-compatibilidad con mascotas a partir de hechos y reglas de inferencia.
+Chatbot sobre el cuidado de plantas de interior en dos versiones que comparten
+la misma base de conocimiento (`Chatbot/conocimiento.pl`): una en Prolog y otra
+con un LLM (Gemini). Responde consultas sobre luz, riego, humedad, facilidad de
+cuidado y compatibilidad con mascotas a partir de hechos y reglas de inferencia.
+Incluye una interfaz web local para conversar con cualquiera de las dos.
 
 ## Dominio seleccionado
 
@@ -18,14 +20,20 @@ cinta, helecho, calathea, suculenta y ficus.
 - `Chatbot/conocimiento.pl`: hechos y reglas del dominio.
 - `Chatbot/chatbot.pl`: reconocimiento de preguntas y respuestas.
 - `Chatbot/main.pl`: inicio y conversación por consola.
-- `Chatbot/probar_preguntas.pl`: ejecuta las 20 preguntas de prueba y muestra las respuestas.
+- `Chatbot/probar_preguntas.pl`: ejecuta las 20 preguntas de prueba (u otro archivo de preguntas) y muestra las respuestas.
+- `Chatbot/puente_web.pl`: recibe una pregunta en JSON por la entrada estándar y devuelve la respuesta en JSON (lo usa el servidor web).
 - `docs/modelado_fol.md`: modelado del conocimiento en lógica de primer orden.
 - `LLM/chatbot_llm.py`: chatbot con LLM (Gemini) que usa `conocimiento.pl` como base de conocimiento.
-- `LLM/probar_preguntas.py`: ejecuta las 20 preguntas con el chatbot LLM.
+- `LLM/probar_preguntas.py`: ejecuta las preguntas de prueba con el chatbot LLM.
 - `LLM/test_chatbot_llm.py`: pruebas automáticas (no usan red ni API key).
 - `LLM/requirements.txt`: dependencias de Python.
 - `.env.example`: plantilla para guardar la API key (se copia como `.env`, que no se sube al repo).
+- `servidor.py`: servidor web local que conecta la interfaz con ambos chatbots.
+- `web/index.html`, `web/styles.css`, `web/app.js`: interfaz web.
 - `preguntas_prueba.txt`: 20 preguntas para evaluar el chatbot.
+- `preguntas_robustez.txt`: 9 preguntas adicionales (condiciones combinadas, sinónimos, plantas desconocidas).
+- `resultados/`: evidencia de las ejecuciones (respuestas de Prolog y del LLM, pruebas automáticas, servidor).
+- `docs/Informe_Proyecto_2_Chatbot_Plantas.pdf`: informe del proyecto.
 
 ## Requisitos y ejecución
 
@@ -44,6 +52,12 @@ Para ejecutar las 20 preguntas de prueba de una vez:
 
 ```bash
 swipl -q -s Chatbot/probar_preguntas.pl -g probar,halt
+```
+
+Para usar otro archivo de preguntas numeradas (por ejemplo, las de robustez):
+
+```bash
+swipl -q -s Chatbot/probar_preguntas.pl -g "probar('preguntas_robustez.txt'),halt"
 ```
 
 Desde otro programa, la función `responder_texto/2` de `chatbot.pl`
@@ -73,12 +87,26 @@ Otros comandos útiles:
 ```bash
 python LLM/chatbot_llm.py --modelos        # lista los modelos disponibles para tu key
 python LLM/chatbot_llm.py --ver-prompt     # muestra el prompt que recibe el modelo
-python LLM/probar_preguntas.py --salida resultados_llm.md   # las 20 preguntas
+python LLM/probar_preguntas.py --salida resultados/resultados_llm.md   # las 20 preguntas
+python LLM/probar_preguntas.py --numeros 3,12-20 --pausa 10           # solo algunas (cuida la cuota)
+python LLM/probar_preguntas.py --archivo preguntas_robustez.txt       # otro archivo de preguntas
 python -m unittest discover -s LLM -v      # pruebas automáticas
 ```
 
-El modelo por defecto es `gemini-2.5-flash`. Si Google lo retira, se cambia con
+El modelo por defecto es `gemini-3.8-flash`. Si Google lo retira, se cambia con
 la variable `GEMINI_MODEL` (en `.env`) sin tocar el código.
+
+## Interfaz web
+
+Con SWI-Prolog instalado y el entorno virtual activado (la versión Prolog
+funciona aunque no estén instaladas las dependencias de Gemini ni exista `.env`):
+
+```bash
+python servidor.py
+```
+
+Abrir http://127.0.0.1:8000 en el navegador, elegir el modelo (Prolog o Gemini)
+y escribir la pregunta. `Ctrl + C` detiene el servidor.
 
 ## Ejemplos
 
@@ -101,10 +129,3 @@ no esté registrada como segura para mascotas no demuestra que sea tóxica.
 
 Las características de las plantas son una simplificación y requieren
 documentación de fuentes y revisión por especie.
-
-## Desarrollo pendiente
-
-- Completar las fuentes del modelado (sección 9 de `docs/modelado_fol.md`).
-- Desarrollar la interfaz web.
-- Elaborar el informe comparativo de las 20 preguntas, con análisis,
-  conclusiones, fortalezas, debilidades y propuestas de mejora.
