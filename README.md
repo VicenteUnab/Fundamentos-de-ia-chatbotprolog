@@ -129,3 +129,10 @@ no esté registrada como segura para mascotas no demuestra que sea tóxica.
 
 Las características de las plantas son una simplificación y requieren
 documentación de fuentes y revisión por especie.
+
+## Desarrollo pendiente
+
+- Completar las fuentes del modelado (sección 9 de `docs/modelado_fol.md`).
+- Desarrollar la interfaz web.
+- Elaborar el informe comparativo de las 20 preguntas, con análisis,
+  conclusiones, fortalezas, debilidades y propuestas de mejora.
